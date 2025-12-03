@@ -5,8 +5,8 @@
 
 using namespace std;
 
-int get_length(){
-    ifstream f("input_p1.txt");
+int get_length(string file){
+    ifstream f(file);
 
     string s;
     int n_lines = 0;
@@ -19,8 +19,8 @@ int get_length(){
     return n_lines;
 }
 
-vector<int> read_file(int n_lines){
-    ifstream g("input_p1.txt");
+vector<int> read_file(string file, int n_lines){
+    ifstream g(file);
 
 
     string s;
@@ -89,11 +89,12 @@ int part2(int n_lines, vector<int> moves, int start){
 
 int main()
 {
+    string file = "input_p1.txt";
     int n_lines;
-    n_lines = get_length();
+    n_lines = get_length(file);
 
     vector<int> moves;
-    moves = read_file(n_lines);
+    moves = read_file(file, n_lines);
 
     int start = 50;
     int passcode1 = part1(n_lines, moves, start);
