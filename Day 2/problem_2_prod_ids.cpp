@@ -140,8 +140,8 @@ unsigned long long part_2(string file){
 }
 
 int main(){
-    // unsigned long long total1 = part_1(file);
-    // cout<< "Result (part 1): "<< total1 << endl;   
+    unsigned long long total1 = part_1(file);
+    cout<< "Result (part 1): "<< total1 << endl;   
     
     unsigned long long total2 = part_2(file);
     cout<< "Result (part 2): "<< total2 << endl;   
