@@ -5,6 +5,8 @@
 #include <bits/stdc++.h>
 #include <vector>
 #include <regex>
+#include <algorithm>
+#include <cctype>
 
 using namespace std;
 
@@ -12,13 +14,6 @@ const string file = "input_p6.txt";
 const regex digit_code(R"(\d+)");
 const regex digit_code_spaces(R"(\d+\s+)");
 const regex operator_code(R"([\*\+])");
-
-#include <algorithm>
-#include <cctype>
-#include <string>
-#include <vector>
-
-using namespace std;
 
 vector<vector<int>> to_int_matrix(const vector<vector<string>>& nums) {
     vector<vector<int>> result;
@@ -28,7 +23,7 @@ vector<vector<int>> to_int_matrix(const vector<vector<string>>& nums) {
         vector<int> int_row;
         int_row.reserve(row.size());
 
-        for (auto s : row) { // copy each string
+        for (auto s : row) {
             int_row.push_back(stoi(s));
         }
         result.push_back(move(int_row));
