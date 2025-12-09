@@ -32,6 +32,9 @@ std::vector<HeapItem> k_smallest(const std::vector<std::vector<unsigned long lon
         maxHeap.pop();
     }
 
+    std::sort(result.begin(), result.end(),           // ensure ascending order
+              [](auto& a, auto& b){ return std::get<0>(a) < std::get<0>(b); });
+
     return result;
 }
 
@@ -187,26 +190,37 @@ int main(){
 
     // dist_graph.print();
 
-    std::vector<HeapItem> smallest = k_smallest(dist_graph.get_adj_mat(), num_pairs);
+    std::vector<HeapItem> smallest = k_smallest(dist_graph.get_adj_mat(), pow(data.size(), 2)/2);
 
     Graph_Lst connected(n);
 
+    int count = 0;
     for(HeapItem e:smallest){
         connected.add_edge(std::get<1>(e), std::get<2>(e));
+        count++;
+
+        std::vector<std::vector<int>> o = connected.get_parent_sizes();
+
+        if(count == num_pairs){
+            unsigned long total1 = 1;
+            std::vector<int> largest_circuits = k_largest(o[1], 3);
+
+            for (int& val:largest_circuits){
+                total1*=val;
+            }
+
+            std::cout << "Result (part 1) " << total1 << std::endl;
+        }
+        if (o[1].size() == 1){
+            std::array<int, 3> p1 = data[std::get<1>(e)];
+            std::array<int, 3> p2 = data[std::get<2>(e)];
+            unsigned long long total2 = std::llabs((long long)p1[0]*(long long)p2[0]);
+            std::cout << "Result (part 2) " << total2 << std::endl;
+            break;
+        }
     }
 
-    connected.print();
-
-    std::vector<std::vector<int>> o = connected.get_parent_sizes();
-
-    unsigned long total1 = 1;
-    std::vector<int> largest_circuits = k_largest(o[1], 3);
-
-    for (int& val:largest_circuits){
-        total1*=val;
-    }
-
-    std::cout << "Result (part 1) " << total1 << std::endl;
+    // connected.print();
 
     return 0;
 }
