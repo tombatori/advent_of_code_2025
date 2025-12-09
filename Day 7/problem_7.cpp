@@ -14,8 +14,8 @@ int main(){
     bool first_line = true;
     std::vector<std::vector<int>> beam_path;
     std::vector<std::vector<int>> obstacles;
-    std::vector<std::vector<int>> beam_idxs; 
-    std::vector<std::vector<unsigned long>> timelines; 
+    std::vector<std::vector<int>> beam_idxs;
+    std::vector<std::vector<unsigned long>> timelines;
     int r = 0;
     int total1 = 0;
     unsigned long total2 = 0;
@@ -36,7 +36,7 @@ int main(){
             char o = '^';
             int i = 0;
             while ((i = s.find(o, i + 1)) != std::string::npos){
-                row[i] = 1;            
+                row[i] = 1;
             }
             obstacles.push_back(row);
         }
@@ -95,5 +95,5 @@ int main(){
         total2 += timelines[obstacles.size()-1][i];
     }
 
-    return 1;
+    return 0;
 }

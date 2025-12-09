@@ -27,7 +27,7 @@ unsigned long part1(){
         auto second_max = max_element(entries+((first_max - entries)+1), entries+l);
 
         total += *first_max*10 + *second_max;
-        
+
     }
 
     return total;
@@ -56,11 +56,11 @@ unsigned long long part2(){
             jolt_vals[i] = *new_max;
             next_lower_index = new_max - entries + 1;
         }
-        
+
         for(int i=0; i<joltage_length; ++i){
             total += jolt_vals[i]*pow(10, joltage_length-1-i);
         }
-        
+
     }
     return total;
 }
@@ -72,8 +72,8 @@ int main(){
     total1 = part1();
     total2 = part2();
 
-    cout<< "Result (part 1): "<< total1 << endl;  
-    cout<< "Result (part 2): "<< total2 << endl;   
-    
-    return 1;
+    cout<< "Result (part 1): "<< total1 << endl;
+    cout<< "Result (part 2): "<< total2 << endl;
+
+    return 0;
 }

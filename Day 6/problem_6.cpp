@@ -11,7 +11,7 @@
 using namespace std;
 
 const string file = "input_p6.txt";
-const regex digit_code(R"(\d+)");
+const regex dc(R"(\d+)");
 const regex digit_code_spaces(R"(\d+\s+)");
 const regex operator_code(R"([\*\+])");
 
@@ -76,7 +76,7 @@ int main(){
     while(getline(f,s)){
         total_rows++;
         int i = 0;
-        sregex_iterator it(s.begin(), s.end(), digit_code), end;
+        sregex_iterator it(s.begin(), s.end(), dc), end;
         sregex_iterator it_s(s.begin(), s.end(), digit_code_spaces);
         if (it!=end){
             for(it; it!=end;++it){
@@ -155,7 +155,7 @@ int main(){
                     numbers_part2[k][j] = numbers_part2[k][j].append(s.substr(i,1));
                 }
             }
-            
+
 
             j++;
         }
@@ -166,5 +166,5 @@ int main(){
     cout << total << endl;
     cout << total2 << endl;
 
-    return 1;
+    return 0;
 }

@@ -21,7 +21,7 @@ unsigned long long part_1(string file){
 
         string l = s.substr(0, pos);
         string u = s.substr(pos+1);
-        
+
         cout << "Range: " << s.substr(0, pos) << " - " << s.substr(pos+1) << endl;
 
         unsigned long l_int = stol(l);
@@ -38,16 +38,16 @@ unsigned long long part_1(string file){
                 i = pow(10,id_len);
                 continue;
             }
-            
+
             int first_half_digits = floor(i/pow(10,(id_len/2)));
             int last_half_digits = i-first_half_digits*pow(10,(id_len/2));
-    
+
 
             if(first_half_digits==last_half_digits){
                 cout << "id " << i << " added" << endl;
                 total += i;
             }
-            
+
             // cout << i << " " << first_half_digits << " " << last_half_digits << endl;
 
             ++i;
@@ -68,7 +68,7 @@ unsigned long long part_2(string file){
 
         string l = s.substr(0, pos);
         string u = s.substr(pos+1);
-        
+
         cout << "Range: " << s.substr(0, pos) << " - " << s.substr(pos+1) << endl;
 
         unsigned long l_int = stol(l);
@@ -80,7 +80,7 @@ unsigned long long part_2(string file){
             // cout << "Checking " << i << endl;
             string num = to_string(i);
             int id_len = num.length();
-            
+
             // float len_check_float = log10(i);
             // int id_len_check = ceil(len_check_float);
             // if(len_check_float == id_len_check){++id_len_check;}
@@ -130,7 +130,7 @@ unsigned long long part_2(string file){
                 // }
                 // cout << i << " " << first_half_digits << " " << last_half_digits << endl;
             }
-            
+
             ++i;
         }
     }
@@ -141,10 +141,10 @@ unsigned long long part_2(string file){
 
 int main(){
     unsigned long long total1 = part_1(file);
-    cout<< "Result (part 1): "<< total1 << endl;   
-    
+    cout<< "Result (part 1): "<< total1 << endl;
+
     unsigned long long total2 = part_2(file);
-    cout<< "Result (part 2): "<< total2 << endl;   
+    cout<< "Result (part 2): "<< total2 << endl;
 
     return 0;
 }

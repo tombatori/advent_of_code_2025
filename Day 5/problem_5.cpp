@@ -25,7 +25,7 @@ int main(){
             r = false;
 
             sort(ranges.begin(), ranges.end(), comp);
-            
+
             bool just_assigned = false;
             unsigned long range_l = ranges[0][0];
             unsigned long range_u = ranges[0][1];
@@ -72,8 +72,8 @@ int main(){
     }
 
 
-    cout<< "Result (part 1): "<< total1 << endl;  
-    cout<< "Result (part 2): "<< total2 << endl;   
+    cout<< "Result (part 1): "<< total1 << endl;
+    cout<< "Result (part 2): "<< total2 << endl;
 
-    return 1;
+    return 0;
 }

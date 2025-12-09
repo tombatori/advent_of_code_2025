@@ -57,10 +57,10 @@ int main(){
 
         // For each pixel in the image
         for(int i=1;i<y+1;++i){
-            for(int j=1;j<x+1;++j){   
+            for(int j=1;j<x+1;++j){
                 int free_spaces = 8;
                 // Convolve if there is a roll
-                if(warehouse_floor[i][j]==1){        
+                if(warehouse_floor[i][j]==1){
                     for(int i_prime=-1;i_prime<=1;++i_prime){
                         for(int j_prime=-1;j_prime<=1;++j_prime){
                             free_spaces -= warehouse_floor[i+i_prime][j+j_prime]*kernel[i_prime+1][j_prime+1];
@@ -81,8 +81,8 @@ int main(){
         }
     }
 
-    cout<< "Result (part 1): "<< total1 << endl;  
-    cout<< "Result (part 2): "<< total << endl;   
+    cout<< "Result (part 1): "<< total1 << endl;
+    cout<< "Result (part 2): "<< total << endl;
 
-    return 1;
+    return 0;
 }
