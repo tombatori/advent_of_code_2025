@@ -8,7 +8,7 @@
 #include <tuple>
 #include <vector>
 
-const std::string file = "input_p10_test.txt";
+const std::string file = "input_p10.txt";
 const std::regex dc(R"(\d+)");
 
 const char del = ',';
@@ -32,7 +32,6 @@ int solve_pt1(std::vector<int> data) {
             for (int change : state_changes) {
                 int new_state = prev_state ^ change;
                 if (new_state == target) {
-                    std::cout << l << std::endl;
                     return l;
                 }
 
@@ -45,7 +44,6 @@ int solve_pt1(std::vector<int> data) {
         prev_outputs = new_outputs;
         l++;
     }
-    // std::cout << "failed" << std::endl;
     return 0;
 }
 
@@ -53,8 +51,34 @@ int solve_pt2(std::vector<std::vector<int>> data) {
     int result = 0;
     std::vector<int> target = data[0];
     std::vector<std::vector<int>> state_changes(data.begin() + 1, data.end());
+    int l = target.size();
+    std::vector<std::vector<int>> prev_outputs(1, std::vector<int>(l, 0));
+    std::set<std::vector<int>> visited;
+    visited.insert(std::vector<int>(l, 0));
 
-    // TODO
+    int count = 1;
+    while (!prev_outputs.empty()) {
+        std::vector<std::vector<int>> current_outputs;
+        for (const auto &e : prev_outputs) {
+            for (const auto &e1 : state_changes) {
+                std::vector<int> result(l, 0);
+                for (int i = 0; i < l; i++) {
+                    result[i] = e[i] + e1[i];
+                }
+                if (result == target) {
+                    return count;
+                }
+                if (visited.insert(result).second) {
+                    current_outputs.push_back(result);
+                }
+            }
+        }
+        prev_outputs = current_outputs;
+        count++;
+        std::cout << "Count: " << count << std::endl;
+    }
+
+    return 0;
 }
 
 int main() {
@@ -130,8 +154,18 @@ int main() {
         int l = solve_pt1(e);
         total1 += l;
     }
-
     std::cout << "Result (part 1): " << total1 << std::endl;
+
+    int total2 = 0;
+    int logger = 0;
+    for (std::vector<std::vector<int>> e : input_arr) {
+        int l = solve_pt2(e);
+        std::cout << logger << " " << l << std::endl;
+        total2 += l;
+        logger++;
+    }
+
+    std::cout << "Result (part 2): " << total2 << std::endl;
 
     return 0;
 }
